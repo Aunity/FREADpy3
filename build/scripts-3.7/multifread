@@ -165,7 +165,7 @@ def main():
     try:
         (opts, args) = parser.parse_args()
     except RuntimeError:
-        print "Error parsing command line arguments."
+        print("Error parsing command line arguments.")
     
     if len(args) < 3:
         parser.print_help()

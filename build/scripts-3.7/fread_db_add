@@ -34,8 +34,8 @@ terminal_cutoff = 1
 params = Params(allowed=["force"], withargument=["terminal", "maxb", "minlen", "maxlen"])
 
 if len(params.args) < 2:
-  print "USAGE: %s <pyfread_db> <pdb_file ...>" % (params.scriptname)
-  print """
+  print("USAGE: %s <pyfread_db> <pdb_file ...>" % (params.scriptname))
+  print("""
     <pyfread_db>    Root directory of the PyFREAD database
     <pdb_file ...>  One or more PDB files to be added to the database
   
@@ -45,7 +45,7 @@ if len(params.args) < 2:
       --maxb NUM        Set maximum B factor per residue to NUM.
       --terminal NUM    Ignore the first and last NUM residues (default: 5).
       --force           Insert loops into database, even if TEM file exists.
-  """
+  """)
   sys.exit(1)
 
 
@@ -124,7 +124,7 @@ try:
         f.close()
     
     
-    print "%d/%d : %s" % (ifile+1, len(params.args)-1, strucname)
+    print("%d/%d : %s" % (ifile+1, len(params.args)-1, strucname))
     
 
     sequence = residues.get_seq()

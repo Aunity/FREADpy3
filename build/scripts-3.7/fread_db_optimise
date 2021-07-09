@@ -19,7 +19,7 @@ from prosci.loops.loopmodel import get_db_file_dict
 params = Params(withargument=["minlen", "maxlen"])
 
 if len(params.args) != 1:
-  print """
+  print( """
   Rebuilds the specified PyFREAD database to reduce runtimes and
   to clear any wasted disk space.
   This should be run on any newly created PyFREAD database before first
@@ -36,7 +36,7 @@ if len(params.args) != 1:
     
       --minlen NUM      Minimum loop length to optimise
       --maxlen NUM      Maximum loop length to optimise
-  """ % (params.scriptname)
+  """ % (params.scriptname))
   sys.exit(1)
 
 
@@ -52,10 +52,10 @@ db_file_map = get_db_file_dict(dbdir)
 
 for loop_length in sorted(db_file_map):
   if loop_length < min_loop_length or loop_length > max_loop_length:
-    print "Skipping loops of length %d" % (loop_length)
+    print( "Skipping loops of length %d" % (loop_length))
     continue
   
-  print "Optimising loops of length %d" % (loop_length)
+  print("Optimising loops of length %d" % (loop_length))
   
   dbfile = db_file_map[loop_length]
   

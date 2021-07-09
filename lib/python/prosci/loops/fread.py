@@ -164,6 +164,7 @@ class Fread(object):
 
 
   def set_loop(self, start_of_loop, loop_sequence, resnum=False, chain=None, structure_known=None):
+    # print(start_of_loop)
     self.clear_results()
     if chain is not None:
       chain = chain.strip()
@@ -227,6 +228,9 @@ class Fread(object):
     if self.loop_structure_is_known:
       end_of_loop += len(loop_sequence)
       strucseq = ""
+      # import pandas as pd
+      #pd.to_pickle(self.residues, 'residues.pkl3')
+      # print(start_of_loop, end_of_loop)
       for i,r in enumerate(self.residues[start_of_loop:end_of_loop]):
           strucseq += r.get_seq()
       if (not self.mutate) and (loop_sequence != strucseq):
@@ -594,6 +598,14 @@ class Fread(object):
   def write_summary(self, outstream=sys.stdout, write_decoy_sequence=False):
     """Write summary information to specified output stream.
     """
+    #line = "Fragment ([code][chain]_[start startcode]_[length])\tEnvironment substitution score\tinternal_rmsd\tanchor_rmsd_open\titerations"
+    #if write_decoy_sequence:
+    #    line += "\tsequence"
+    #if self.calculate_contacts:
+    #    line += "\tcontacts\tnative_contacts\tcontact_identity"
+    #if self.loop_structure_is_known:
+    #    line += "\tloop_rmsd_open\tloop_rmsd_close"
+    #outstream.write(line+"\n")
     for decoy in self.results:
       outstream.write("%s_%d%s_%d\t%d\t%.3f\t%.3f\t%d" % (decoy.struc, decoy.startres, decoy.startinscode, decoy.length, decoy.score, decoy.internal_rmsd, decoy.anchor_rmsd_open, decoy.iterations))
       if write_decoy_sequence:

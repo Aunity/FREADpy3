@@ -81,6 +81,16 @@ def get_loop_structure(dbdir, strucname, start, length):
     return residues
 
   source = os.path.join(dbdir, "structures", strucname[1:3], strucname)
+  chain_upper = source[-1].upper()
+  source_upper = source[:-1] + chain_upper
+  source_lower = source[:-1] + source[-1].lower()
+  if os.path.exists(source_upper+'.atm.gz') or os.path.exists(source_upper+'.atm'):
+    source = source_upper
+  elif os.path.exists(source_lower+'.atm.gz') or os.path.exists(source_lower+'.atm'):
+    source = source_lower
+  else:
+    raise Exception("Can't found the structure %s .atm.gz .atm"%source)
+
   f = None
   try:
     #p = subprocess.Popen(["gunzip -c", source + ".atm.gz"], stdout = subprocess.PIPE)
