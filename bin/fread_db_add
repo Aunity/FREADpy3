@@ -75,7 +75,7 @@ if not os.path.isdir(strucdir):
 
 database_connections=[]
 database_cursors=[]
-for loop_length in xrange(min_loop_length, max_loop_length+1):
+for loop_length in range(min_loop_length, max_loop_length+1):
   dbfile = os.path.join(dbdir, "length%d.sqlite"%loop_length)
   conn = sql.connect(dbfile)
   cursor = conn.cursor()
@@ -130,14 +130,13 @@ try:
     sequence = residues.get_seq()
     assert len(sequence) == len(residues)
 
-    
     if os.path.exists(annotation_file_destination):
       annotation = Ali(annotation_file_destination)
       dihedrals = annotation[0]["FREAD dihedral class"].seq
     else:
       # Dihedral angles. Also serves as a mask - residues marked '?' are excluded from the database.
-      dihedrals = array('c', "?")
-      for i in xrange(1, len(residues)-1):
+      dihedrals = array('u', "?")
+      for i in range(1, len(residues)-1):
         if not is_structure_ok(residues, i-1, i+2) or sequence[i] == 'X':
           x = '?'
         else:
@@ -148,19 +147,19 @@ try:
             x = '?'
         dihedrals.append(x)
       dihedrals.append("?")
-      dihedrals = dihedrals.tostring()
+      dihedrals = "".join(dihedrals.tolist())#tobytes().decode("utf-8") #tostring()
       assert len(dihedrals) == len(residues)
     
     
 #     struc_coords_list = [r.CA.xyz for r in residues]
     
     
-    for loop_length in xrange(min_loop_length, max_loop_length+1):
+    for loop_length in range(min_loop_length, max_loop_length+1):
       cursor = database_cursors[loop_length-min_loop_length]
       totallen = loop_length + 2*ANCHOR_LENGTH
       
       # Loop over all possible fragments within the protein
-      for start in xrange(terminal_cutoff, len(residues)-terminal_cutoff-totallen):
+      for start in range(terminal_cutoff, len(residues)-terminal_cutoff-totallen):
         end = start + totallen
         loopstart = start+ANCHOR_LENGTH
         loopend = end-ANCHOR_LENGTH

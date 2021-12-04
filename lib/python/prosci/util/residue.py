@@ -102,7 +102,7 @@ class ResidueList(list):
       if r is not None:
         S = ord(r.get_seq())
         seq.append(S)
-    return seq.tostring()
+    return seq.tobytes().decode("utf-8") #tostring()
 
 
   def get_gapped_seq(self, gapchar='-', collapse_gaps=False):
@@ -122,7 +122,7 @@ class ResidueList(list):
       else:
         seq.append(gapchar)
       prevres = r
-    return seq.tostring()
+    return seq.tobytes().decode("utf-8")#tostring()
 
 
   def get_coords(self, atomfilter=lambda atom: True):
