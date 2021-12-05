@@ -66,7 +66,10 @@ def get_loop_structure(dbdir, strucname, start, length):
     r=[]
     i=-1
     for line in f:
-      line = bytes.decode(line)
+      try:
+        line = bytes.decode(line)
+      except:
+        line = line
       # print(line)
       if line.startswith('>'):
         i+=1
