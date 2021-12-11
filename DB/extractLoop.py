@@ -27,7 +27,7 @@ def read_file(recordfile, outp=None):
             pdbfile = lineList[0]
             chain = lineList[1]
             loop = list(map(int, lineList[2].split("-")))
-            outfile = os.path.join(outp, os.path.split(pdbfile)[-1][:-4]) + ".pdb"
+            outfile = os.path.join(outp, os.path.split(pdbfile)[-1][:-4]) + "H.pdb"
             extract_loop(pdbfile, loop, chain, outfile)
 
 def main():
