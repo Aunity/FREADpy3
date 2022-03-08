@@ -433,7 +433,10 @@ class Fread(object):
         # Retrieve loop structure from database
         decoy_residues = get_loop_structure(self.db, decoy.struc, decoy.start, total_length)
 
-        assert len(decoy_residues) == total_length
+        #assert len(decoy_residues) == total_length
+        if len(decoy_residues) != total_length:
+            print('WARNING: get decoy residue error, %s %d %d'%(decoy.struc,total_length,len(decoy_residues)))
+            continue
 
 
         # Superimpose anchors and check anchor RMSD before starting
