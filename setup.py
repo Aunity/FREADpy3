@@ -22,11 +22,11 @@ setup(
           "prosci.cpp"
         ],
         package_dir = {
-          "prosci": "lib/python/prosci",
-          "prosci.loops": "lib/python/prosci/loops",
-          "prosci.util": "lib/python/prosci/util",
-          "prosci.cpp":"lib/python/prosci/cpp",# Entire protocol as a master script
+          "prosci": "prosci",
+          "prosci.loops": "prosci/loops",
+          "prosci.util": "prosci/util",
+          "prosci.cpp":"prosci/cpp",# Entire protocol as a master script
       },
-      scripts = ["bin/esst.txt", "bin/esst.txt", "bin/fread_db_add", "bin/fread_db_optimise", "bin/multifread",
-                 "bin/multifread.orig", "bin/pyfread", "bin/pyfread_cpp/", "bin/tools/", "bin/pyfread_cpp/"],
+      scripts = [ "prosci/bin/esst.txt", "prosci/bin/fread_db_add", "prosci/bin/fread_db_optimise", "prosci/bin/multifread",
+                 "prosci/bin/multifread.orig", "prosci/bin/pyfread" ],
 )
