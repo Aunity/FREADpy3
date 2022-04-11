@@ -9,24 +9,24 @@ numpy_include_dir = np.get_include()
 # Modified by Maohua Yang
 
 setup(
-        name = 'prosci',
-        version = '1.0',
+        name = 'pyfread',
+        version = '1.5',
         description = "FREAD: fragment-based loop modelling method",
         author='Sebastian Kelm',
         author_email = "kelm@stats.ox.ac.uk",
         url='http://opig.stats.ox.ac.uk/webapps/newsabdab/sabpred/fread/',
         packages = [
-          "prosci",                    # Entire module
-          "prosci.loops",
-          "prosci.util",
-          "prosci.cpp"
+          "pyfread",                    # Entire module
+          "pyfread.loops",
+          "pyfread.util",
+          "pyfread.cpp"
         ],
         package_dir = {
-          "prosci": "prosci",
-          "prosci.loops": "prosci/loops",
-          "prosci.util": "prosci/util",
-          "prosci.cpp":"prosci/cpp",# Entire protocol as a master script
+          "pyfread": "pyfread",
+          "pyfread.loops": "pyfread/loops",
+          "pyfread.util": "pyfread/util",
+          "pyfread.cpp":"pyfread/cpp",# Entire protocol as a master script
       },
-      scripts = [ "prosci/bin/esst.txt", "prosci/bin/fread_db_add", "prosci/bin/fread_db_optimise", "prosci/bin/multifread",
-                 "prosci/bin/multifread.orig", "prosci/bin/pyfread" ],
+      scripts = [ "pyfread/bin/esst.txt", "pyfread/bin/fread_db_add", "pyfread/bin/fread_db_optimise", "pyfread/bin/multifread",
+                 "pyfread/bin/multifread.orig", "pyfread/bin/pyfread" ],
 )
